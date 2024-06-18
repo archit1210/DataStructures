@@ -76,6 +76,42 @@ vector<int> levelOrder(Node *root)
     return res;
 }
 
+void preorder(Node *&root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+
+    cout << root->data << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
+void inorder(Node *&root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+
+    inorder(root->left);
+    cout << root->data << " ";
+    inorder(root->right);
+}
+
+void postorder(Node *&root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+
+    postorder(root->left);
+    postorder(root->right);
+    cout << root->data << " ";
+}
+
 int main()
 {
     Node *root = NULL;
@@ -83,9 +119,45 @@ int main()
     takeInput(root); // Pass root by reference
     vector<int> ans = levelOrder(root);
 
+    cout << endl
+         << "Level Order Traversal" << endl;
+
     for (int i = 0; i < ans.size(); i++)
     {
         cout << ans[i] << " ";
     }
+
+    cout << endl
+         << "Pre Order Traversal" << endl;
+
+    preorder(root);
+    cout << endl
+         << "In Order Traversal" << endl;
+
+    inorder(root);
+    cout << endl
+         << "Post Order Traversal" << endl;
+    postorder(root);
     return 0;
 }
+
+/*
+Enter the data :
+40
+35
+25
+10
+45
+50
+60
+-1
+
+Level Order Traversal
+40 35 45 25 50 10 60
+Pre Order Traversal
+40 35 25 10 45 50 60
+In Order Traversal
+10 25 35 40 45 50 60
+Post Order Traversal
+10 25 35 60 50 45 40
+*/
